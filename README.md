@@ -2,7 +2,7 @@
 
 Rewind checks `https://raw.githubusercontent.com/adxtti/Rewind-Updates/main/version.json` on startup and again before either online or offline play. A newer version must be installed before starting NBA 2K19. Failed, missing, or invalid update checks keep both play options locked; Retry checks again. A running game is never interrupted or terminated for an update.
 
-The launcher downloads the full Windows x64 portable executable, shows download progress, checks its declared byte count and SHA-256, and restarts after installation. Its embedded Rewind Client module, helpers, and server connection settings update with it. Local Steam profiles, careers, saves, and game files are separate and retained. NBA2K19.exe is never patched by the updater.
+The launcher downloads the full Windows x64 portable executable, shows download progress, checks its declared byte count and SHA-256, and restarts after installation. Its embedded Rewind Client module, helpers, and server connection settings update with it. Local Steam profiles, careers, and saves are retained. The separate required game update downloads the approved installation files from `adxtti/game-repair`, backs up existing files, and replaces them before either online or offline play. See [game update deployment](https://github.com/adxtti/game-repair).
 
 ## Publish a release
 
@@ -18,11 +18,11 @@ Example manifest:
 ```json
 {
   "schemaVersion": 1,
-  "version": "0.2.5",
+  "version": "0.2.6",
   "platform": "win32-x64",
-  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.5/Rewind-0.2.5.exe",
+  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.6/Rewind-0.2.6.exe",
   "sha256": "<the exporter supplies the exact 64-character digest>",
-  "size": 102354014
+  "size": 102420764
 }
 ```
 
@@ -38,4 +38,4 @@ References: [electron-builder portable executable environment variables](https:/
 
 ## Recovering from 0.2.3 or 0.2.4 installer errors
 
-Those launchers started Windows PowerShell in detached mode, which can exit before executing the install script. Download Rewind 0.2.5 directly from its GitHub release, close the old launcher, and replace only its portable executable. Keep the existing game folder and local profile data. The corrected installer is included in 0.2.5 for future updates; updating the downloadable version cannot repair an older launcher's already-running installer code.
+Those launchers started Windows PowerShell in detached mode, which can exit before executing the install script. Download Rewind 0.2.6 directly from its GitHub release, close the old launcher, and replace only its portable executable. Keep the existing game folder and local profile data. The corrected installer is included in 0.2.5 and newer for future updates; updating the downloadable version cannot repair an older launcher's already-running installer code.
