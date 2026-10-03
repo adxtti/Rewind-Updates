@@ -18,11 +18,11 @@ Example manifest:
 ```json
 {
   "schemaVersion": 1,
-  "version": "0.2.7",
+  "version": "0.2.8",
   "platform": "win32-x64",
-  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.7/Rewind-0.2.7.exe",
+  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.8/Rewind-0.2.8.exe",
   "sha256": "<the exporter supplies the exact 64-character digest>",
-  "size": 102421760
+  "size": 102422821
 }
 ```
 
