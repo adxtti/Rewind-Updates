@@ -18,11 +18,11 @@ Example manifest:
 ```json
 {
   "schemaVersion": 1,
-  "version": "0.2.6",
+  "version": "0.2.7",
   "platform": "win32-x64",
-  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.6/Rewind-0.2.6.exe",
+  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.7/Rewind-0.2.7.exe",
   "sha256": "<the exporter supplies the exact 64-character digest>",
-  "size": 102420764
+  "size": 102421760
 }
 ```
 
@@ -38,4 +38,8 @@ References: [electron-builder portable executable environment variables](https:/
 
 ## Recovering from 0.2.3 or 0.2.4 installer errors
 
-Those launchers started Windows PowerShell in detached mode, which can exit before executing the install script. Download Rewind 0.2.6 directly from its GitHub release, close the old launcher, and replace only its portable executable. Keep the existing game folder and local profile data. The corrected installer is included in 0.2.5 and newer for future updates; updating the downloadable version cannot repair an older launcher's already-running installer code.
+Those launchers started Windows PowerShell in detached mode, which can exit before executing the install script. Download the latest Rewind executable directly from its GitHub release, close the old launcher, and replace only its portable executable. Keep the existing game folder and local profile data. The corrected installer is included in 0.2.5 and newer for future updates; updating the downloadable version cannot repair an older launcher's already-running installer code.
+
+## Steam connection recovery in 0.2.7
+
+Before online launch, Rewind validates the saved Steam connection with the running server before syncing careers or joining the queue. If the server rejects it, the launcher clears that rejected connection and opens normal Steam sign-in. Cancelled or failed sign-in keeps play blocked and preserves saves. A server timeout does not discard an otherwise valid connection. The fix works with the existing 0.2.6 operator; no operator update is required.
