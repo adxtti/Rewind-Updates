@@ -6,9 +6,9 @@ The launcher downloads the full Windows x64 portable executable, shows download 
 
 ## Publish a release
 
-1. Increase `launcher/package.json`'s version for each release. Rebuild and export the matching production player package.
+1. Increase `launcher/package.json`'s version for each release. Rebuild the matching production launcher executable.
 2. Run `node tools/export-updates.cjs --settings ../deploy/private/player-settings.json --certificate ../deploy/public/Rewind-public.crt` from the launcher directory. The output is `dist/updates/Rewind-Updates-<version>` under the Rewind project.
-3. In the public `adxtti/Rewind-Updates` repository, create GitHub Release tag `v<version>`. Upload only the portable launcher executable from the export's `release-assets` folder. It contains the player runtime files and required notices. Client ZIPs, server ZIPs, operator packages, certificate/key ZIPs, server data, signing keys, and account data must stay off this public repository and its releases.
+3. In the public `adxtti/Rewind-Updates` repository, create GitHub Release tag `v<version>`. Upload only `Rewind-<version>.exe` from the export's `release-assets` folder. The executable contains the player runtime files. Keep client ZIPs, server packages, operator packages, certificate/key ZIPs, server data, signing keys, and account data off the public updates repository and releases.
 4. Check that the executable release URL in `version.json` downloads successfully, then copy the exported `version.json`, `.gitignore`, and README into the repository's `main` branch, commit, and push. Publish the manifest last so launchers never see a version whose download is missing.
 
 The prepared `release-assets` directory is deliberately ignored by Git. Portable executables are roughly 100 MB, exceeding GitHub's browser file-upload limit and approaching Git's per-file limit; use GitHub Release assets for binaries. The launcher trusts download links only in this repository (raw main/master files or release assets) and follows HTTPS release redirects only to GitHub's release-asset CDN. It does not accept external update hosts.
@@ -18,9 +18,9 @@ Example manifest:
 ```json
 {
   "schemaVersion": 1,
-  "version": "0.2.4",
+  "version": "0.2.5",
   "platform": "win32-x64",
-  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.4/Rewind-0.2.4.exe",
+  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.5/Rewind-0.2.5.exe",
   "sha256": "<the exporter supplies the exact 64-character digest>",
   "size": 102354014
 }
@@ -35,3 +35,7 @@ Players need a writable folder containing their downloaded `Rewind.exe` (or `Rew
 If the updates repository is empty or unpublished, the production launcher will remain locked by design. Upload the assets and manifest before distributing it. There is no cached permission to bypass a required update in offline mode.
 
 References: [electron-builder portable executable environment variables](https://www.electron.build/docs/nsis/), [GitHub browser upload limits](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository), [GitHub release assets](https://docs.github.com/en/rest/releases/assets).
+
+## Recovering from 0.2.3 or 0.2.4 installer errors
+
+Those launchers started Windows PowerShell in detached mode, which can exit before executing the install script. Download Rewind 0.2.5 directly from its GitHub release, close the old launcher, and replace only its portable executable. Keep the existing game folder and local profile data. The corrected installer is included in 0.2.5 for future updates; updating the downloadable version cannot repair an older launcher's already-running installer code.
