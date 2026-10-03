@@ -18,11 +18,11 @@ Example manifest:
 ```json
 {
   "schemaVersion": 1,
-  "version": "0.2.8",
+  "version": "0.2.9",
   "platform": "win32-x64",
-  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.8/Rewind-0.2.8.exe",
+  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.9/Rewind-0.2.9.exe",
   "sha256": "<the exporter supplies the exact 64-character digest>",
-  "size": 102422821
+  "size": 102425670
 }
 ```
 
@@ -43,3 +43,9 @@ Those launchers started Windows PowerShell in detached mode, which can exit befo
 ## Steam connection recovery in 0.2.7
 
 Before online launch, Rewind validates the saved Steam connection with the running server before syncing careers or joining the queue. If the server rejects it, the launcher clears that rejected connection and opens normal Steam sign-in. Cancelled or failed sign-in keeps play blocked and preserves saves. A server timeout does not discard an otherwise valid connection. The fix works with the existing 0.2.6 operator; no operator update is required.
+
+## Community fixes in 0.2.9
+
+The launcher fixes empty process results being counted as a running game, repeated replacement of unchanged native helpers, temporary Windows file locks, missing client-resource errors, Unicode save-path checks, and valid Steam/queue sessions rejected because the PC clock differs from the server. Failed native launches clean up only the new processes they created. Steam proof, signed ticket expiry, the 300-player limit and save ownership remain enforced.
+
+The private 0.2.9 operator package also fixes the confirmed expired-session roster crash, a Park JOIN-before-PLAYER ordering stall, missing published tattoo texture files, and career sync rejecting stale cap-cache values. These server changes require updating the VPS separately; they are not applied by downloading the launcher. Original saves remain intact, and earned attribute unlocks still follow the stock schedule. Live Park matches and the tattoo UI require player validation. Signature-equipping crashes, missing facial-hair menu options and the reported native 0x06 error are not claimed resolved.

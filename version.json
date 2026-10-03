@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "version": "0.2.8",
+  "version": "0.2.9",
   "platform": "win32-x64",
-  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.8/Rewind-0.2.8.exe",
-  "sha256": "5ad755680158a76d6f030d24f5a149671d9887fb45b98f7a807a645ce779c56b",
-  "size": 102422821
+  "url": "https://github.com/adxtti/Rewind-Updates/releases/download/v0.2.9/Rewind-0.2.9.exe",
+  "sha256": "b57200a7c063c7ae46590c9de6825a83e9bac8c8d394edc7dc398dc0dccb112f",
+  "size": 102425670
 }
